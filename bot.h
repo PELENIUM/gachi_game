@@ -1,22 +1,17 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "player.h"
-#include <cmath>
+#include <math.h>
 using namespace sf;
 
-class Bot{
+class Bot : private Player{
 private:
-	bool* is_moving = new bool;
-	int *iter_l = new int, *iter_r = new int, *iter_u = new int, *iter_d = new int, *iter_s = new int, *counter_l = new int, *counter_r = new int, *counter_u = new int, *counter_d = new int, *counter_s = new int;
-	float* MOVING_SPEED = new float;
-	int* death_counter = new int;
-	Texture* texture = new Texture;
-	Sprite* sprite = new Sprite;
-	bool move_l = false, move_r = false, move_u = false, move_d = false;
+	bool in_zone = false;
+	bool attack_zone = false;
 public:
 	int* x = new int;
 	int* y = new int;
-	Bot (int X, int Y, String path, float speed){
+	Bot (int X, int Y, String path, float speed):Player(X, Y, path, speed){
 		*x = X;
 		*y = Y;
 		texture->loadFromFile(path);
@@ -51,109 +46,149 @@ public:
 		delete texture;
 	}
 	void update(RenderWindow *win, Player *pl) {
-		if ((*(pl->x) - *(x)) > 0) {
-			*x += *MOVING_SPEED;
-			move_r = true;
-			move_l = false;
-			move_u = false;
-			move_d = false;
-		}
-		else if ((*(pl->x) - *(x)) < 0) {
-			*x -= *MOVING_SPEED - 0.5;
-			move_l = true;
-			move_r = false;
-			move_u = false;
-			move_d = false;
-		}
-		else if ((*(pl->x) - *(x)) == 0) {
-			move_l = false;
-			move_r = true;
-			move_u = false;
-			move_d = false;
-		}
-		if ((*(pl->y + 67) - *(y)) > 0) {
-			*y += *MOVING_SPEED;
-			move_d = true;
-			move_u = false;
-		}
-		else if ((*(pl->y + 67) - *(y)) < 0) {
-			*y -= *MOVING_SPEED - 0.5;
-			move_u = true;
-			move_d = false;
-		}
-		else if ((*(pl->y + 67) - *(y)) == 0) {
-			move_u = false;
-			move_d = false;
-		}
-		if (main_active) {
-			if (move_l) {
-				if (Map[(*y) / 32][*x / 32] == '#' or Map[(*y + 28) / 32][*x / 32] == '#') {
-					*x = 32 * ((*x) / 32) + 1;
+		if (!in_zone and main_active)
+			sprite->setTextureRect(IntRect(0, 0, 35, 28));
+		if (sqrt(pow(*(pl->x) - (*(x) + 36), 2) + pow(*(pl->y) - (*(y) + 28), 2)) <= 150)
+			in_zone = true;
+		if (in_zone) {
+			if ((*(pl->x) - *(x)) > 0) {
+				if ((*(pl->x) - *(x)) >= *MOVING_SPEED) {
+					move_r = true;
+					move_l = false;
 				}
-				(*counter_l)++;
-				if (*counter_l >= 3) {
-					(*iter_l)++;
-					*counter_l = 0;
+				if ((*(pl->x) - *(x)) < *MOVING_SPEED) {
+					move_l = false;
+					move_r = true;
 				}
-				sprite->setTextureRect(IntRect((*iter_l) * 36 + 36, 29, -36, 28));
-				if (*iter_l == 6)
-					*iter_l = 0;
+			}
+			else if ((*(pl->x) - *(x)) < 0) {
+				if (-(*(pl->x) - *(x)) >= (*MOVING_SPEED)) {
+					move_l = true;
+					move_r = false;
+				}
+				if (-(*(pl->x) - *(x)) < (*MOVING_SPEED)) {
+					move_l = false;
+					move_r = true;
+				}
+			}
+			else if ((*(pl->x) - *(x)) == 0) {
+				move_l = false;
+				move_r = true;
 			}
 
-			if (move_r) {
-				if (Map[*y / 32][(*x + 36) / 32] == '#' or Map[(*y + 28) / 32][(*x + 36) / 32] == '#') {
-					*x = 32 * ((*x + 36) / 32) - 37;
+			if ((*(pl->y) + 32 - *(y)) > 0) {
+				if ((*(pl->y) + 32 - *(y)) >= *MOVING_SPEED) {
+					move_d = true;
+					move_u = false;
 				}
-				(*counter_r)++;
-				if (*counter_r >= 3) {
-					(*iter_r)++;
-					*counter_r = 0;
+				if ((*(pl->y) + 32 - *(y)) < *MOVING_SPEED) {
+					move_u = true;
+					move_d = false;
 				}
-				sprite->setTextureRect(IntRect((*iter_r) * 36, 29, 36, 28));
-				if (*iter_r == 6)
-					*iter_r = 0;
+			}
+			else if ((*(pl->y) + 32 - *(y)) < 0) {
+				if (-(*(pl->y) + 32 - *(y)) >= *MOVING_SPEED) {
+					move_u = true;
+					move_d = false;
+				}
+				if (-(*(pl->y) + 32 - *(y)) < *MOVING_SPEED) {
+					move_u = true;
+					move_d = false;
+				}
+			}
+			else if ((*(pl->y) + 32 - *(y)) == 0) {
+				move_u = true;
+				move_d = false;
 			}
 
-			if (move_u) {
-				if (Map[*y / 32][*x / 32] == '#' or Map[*y / 32][(*x + 36) / 32] == '#') {
-					*y = 32 * (*y / 32) + 1;
+			if (main_active) {
+				if (move_l) {
+					if (Map[(*y) / 32][*x / 32] == '#' or Map[(*y + 28) / 32][*x / 32] == '#') {
+						*x = 32 * ((*x) / 32) + 1;
+					}
+					if (Map[(*y) / 32][*x / 32] != '#' and Map[(*y + 28) / 32][*x / 32] != '#') {
+						*x -= *MOVING_SPEED - 0.5;
+					}
+					(*counter_l)++;
+					if (*counter_l >= 3) {
+						(*iter_l)++;
+						*counter_l = 0;
+					}
+					sprite->setTextureRect(IntRect((*iter_l) * 36 + 36, 29, -36, 28));
+					if (*iter_l == 6)
+						*iter_l = 0;
 				}
-				(*counter_u)++;
-				if (*counter_u >= 3) {
-					(*iter_u)++;
-					*counter_u = 0;
-				}
-				if (move_r)
-					sprite->setTextureRect(IntRect((*iter_u) * 36, 29, 36, 28));
-				if (move_l)
-					sprite->setTextureRect(IntRect((*iter_u) * 36 + 36, 29, -36, 28));
-				if (*iter_u == 6)
-					*iter_u = 0;
-			}
 
-			if (move_d) {
-				if (Map[(*y + 28) / 32][(*x) / 32] == '#' or Map[(*y + 28) / 32][(*x + 36) / 32] == '#') {
-					*y = 32 * (*y / 32) - 1;
+				if (move_r) {
+					if (Map[*y / 32][(*x + 36) / 32] == '#' or Map[(*y + 28) / 32][(*x + 36) / 32] == '#') {
+						*x = 32 * ((*x + 36) / 32) - 37;
+					}
+					if (Map[*y / 32][(*x + 36) / 32] != '#' and Map[(*y + 28) / 32][(*x + 36) / 32] != '#') {
+						*x += *MOVING_SPEED;
+					}
+
+					(*counter_r)++;
+					if (*counter_r >= 3) {
+						(*iter_r)++;
+						*counter_r = 0;
+					}
+					sprite->setTextureRect(IntRect((*iter_r) * 36, 29, 36, 28));
+					if (*iter_r == 6)
+						*iter_r = 0;
 				}
-				(*counter_d)++;
-				if (*counter_d >= 3) {
-					(*iter_d)++;
-					*counter_d = 0;
+
+				if (move_u) {
+					if (Map[*y / 32][*x / 32] == '#' or Map[*y / 32][(*x + 36) / 32] == '#') {
+						*y = 32 * (*y / 32) + 1;
+					}
+					if (Map[*y / 32][*x / 32] != '#' and Map[*y / 32][(*x + 36) / 32] != '#') {
+						*y -= *MOVING_SPEED - 0.5;
+					}
+
+					(*counter_u)++;
+					if (*counter_u >= 3) {
+						(*iter_u)++;
+						*counter_u = 0;
+					}
+					if (move_r)
+						sprite->setTextureRect(IntRect((*iter_u) * 36, 29, 36, 28));
+					if (move_l)
+						sprite->setTextureRect(IntRect((*iter_u) * 36 + 36, 29, -36, 28));
+					if (*iter_u == 6)
+						*iter_u = 0;
 				}
-				if (move_r)
-					sprite->setTextureRect(IntRect((*iter_d) * 36, 29, 36, 28));
-				if (move_l)
-					sprite->setTextureRect(IntRect((*iter_d) * 36 + 36, 29, -36, 28));
-				if (*iter_d == 6)
-					*iter_d = 0;
+
+				if (move_d) {
+					if (Map[(*y + 28) / 32][(*x) / 32] == '#' or Map[(*y + 28) / 32][(*x + 36) / 32] == '#') {
+						*y = 32 * (*y / 32) - 1;
+					}
+					if (Map[(*y + 28) / 32][(*x) / 32] != '#' and Map[(*y + 28) / 32][(*x + 36) / 32] != '#') {
+						*y += *MOVING_SPEED;
+					}
+
+					(*counter_d)++;
+					if (*counter_d >= 3) {
+						(*iter_d)++;
+						*counter_d = 0;
+					}
+					if (move_r)
+						sprite->setTextureRect(IntRect((*iter_d) * 36, 29, 36, 28));
+					if (move_l)
+						sprite->setTextureRect(IntRect((*iter_d) * 36 + 36, 29, -36, 28));
+					if (*iter_d == 6)
+						*iter_d = 0;
+				}
+
+				if (Map[(*y + 28 - 10) / 32][(*x) / 32] == '@' or Map[(*y + 28 - 10) / 32][(*x + 28) / 32] == '@') {
+					*x = 1800;
+					*y = 1160;
+				}
+				
 			}
-			if (Keyboard::isKeyPressed(Keyboard::R) == true or Map[(*y + 28 - 10) / 32][(*x) / 32] == '@'
-				or Map[(*y + 28 - 10) / 32][(*x + 28) / 32] == '@') {
-				*x = 1800;
-				*y = 1160;
-			}
+			
 		}
 		sprite->setPosition(*x, *y);
-		win->draw(*sprite);
+		if (main_active)
+			win->draw(*sprite);
 	}
 };

@@ -26,7 +26,7 @@ void game() {
     back_music_main.setLoop(true);
     back_music_main.setVolume(100);
     back_music_main.play();
-    Bot *nps = new Bot(1050, 500, "images/Sprites/NightBorne.png", 3.5);
+    Bot *nps = new Bot(150, 300, "images/Sprites/NightBorne.png", 3.5);
     Player *main_player = new Player(1800, 860, "images/Sprites/enemy.png", 4);
     window.setFramerateLimit(60);
     Clock clock;
