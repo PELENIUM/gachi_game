@@ -1,1 +1,2 @@
 C:\development\SFML\new\x64\Debug\SFML.exe
+C:\development\source\potato\x64\Debug\SFML.exe

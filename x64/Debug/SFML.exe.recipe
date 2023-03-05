@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\development\SFML\new\x64\Debug\SFML.exe</FullPath>
+      <FullPath>C:\development\source\potato\x64\Debug\SFML.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

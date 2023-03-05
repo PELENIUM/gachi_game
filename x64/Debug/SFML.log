@@ -1,36 +1,36 @@
 ﻿  main.cpp
-C:\development\SFML\new\player.h(26,27): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\development\SFML\new\player.h(26,23): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\development\SFML\new\player.h(99,29): warning C4244: =: преобразование "const T" в "int", возможна потеря данных
+C:\development\source\potato\player.h(26,27): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\development\source\potato\player.h(26,23): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\development\source\potato\player.h(99,29): warning C4244: =: преобразование "const T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\development\SFML\new\player.h(100,29): warning C4244: =: преобразование "const T" в "int", возможна потеря данных
+C:\development\source\potato\player.h(100,29): warning C4244: =: преобразование "const T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\development\SFML\new\player.h(108,12): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
-C:\development\SFML\new\player.h(128,13): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
-C:\development\SFML\new\player.h(148,12): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
-C:\development\SFML\new\player.h(171,12): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
-C:\development\SFML\new\player.h(209,12): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
-C:\development\SFML\new\player.h(229,13): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
-C:\development\SFML\new\player.h(249,12): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
-C:\development\SFML\new\player.h(272,12): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
-C:\development\SFML\new\player.h(304,27): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\development\SFML\new\player.h(304,23): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\development\SFML\new\bot.h(19,27): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\development\SFML\new\bot.h(19,23): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\development\SFML\new\bot.h(110,27): warning C4244: -=: преобразование "double" в "int", возможна потеря данных
-C:\development\SFML\new\bot.h(127,13): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
-C:\development\SFML\new\bot.h(145,27): warning C4244: -=: преобразование "double" в "int", возможна потеря данных
-C:\development\SFML\new\bot.h(166,13): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
-C:\development\SFML\new\bot.h(190,27): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\development\SFML\new\bot.h(190,23): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\development\SFML\new\main.cpp(74,47): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\development\SFML\new\main.cpp(74,39): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\development\SFML\new\main.cpp(97,47): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\development\SFML\new\main.cpp(97,39): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-  SFML.vcxproj -> C:\development\SFML\new\x64\Debug\SFML.exe
+C:\development\source\potato\player.h(108,12): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
+C:\development\source\potato\player.h(128,13): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
+C:\development\source\potato\player.h(148,12): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
+C:\development\source\potato\player.h(171,12): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
+C:\development\source\potato\player.h(209,12): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
+C:\development\source\potato\player.h(229,13): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
+C:\development\source\potato\player.h(249,12): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
+C:\development\source\potato\player.h(272,12): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
+C:\development\source\potato\player.h(304,27): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\development\source\potato\player.h(304,23): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\development\source\potato\bot.h(19,27): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\development\source\potato\bot.h(19,23): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\development\source\potato\bot.h(110,27): warning C4244: -=: преобразование "double" в "int", возможна потеря данных
+C:\development\source\potato\bot.h(127,13): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
+C:\development\source\potato\bot.h(145,27): warning C4244: -=: преобразование "double" в "int", возможна потеря данных
+C:\development\source\potato\bot.h(166,13): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
+C:\development\source\potato\bot.h(190,27): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\development\source\potato\bot.h(190,23): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\development\source\potato\main.cpp(74,47): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\development\source\potato\main.cpp(74,39): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\development\source\potato\main.cpp(97,47): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\development\source\potato\main.cpp(97,39): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+  SFML.vcxproj -> C:\development\source\potato\x64\Debug\SFML.exe
