@@ -29,5 +29,8 @@
     <ClInclude Include="bot.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="collision.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

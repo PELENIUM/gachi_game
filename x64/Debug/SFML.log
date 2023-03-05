@@ -1,51 +1,41 @@
 ﻿  main.cpp
-C:\development\SFML\new\player.h(25,27): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\development\SFML\new\player.h(25,23): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\development\SFML\new\player.h(56,29): warning C4244: =: преобразование "const T" в "int", возможна потеря данных
+C:\development\SFML\new\player.h(26,27): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\development\SFML\new\player.h(26,23): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\development\SFML\new\player.h(60,29): warning C4244: =: преобразование "const T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\development\SFML\new\player.h(57,29): warning C4244: =: преобразование "const T" в "int", возможна потеря данных
+C:\development\SFML\new\player.h(61,29): warning C4244: =: преобразование "const T" в "int", возможна потеря данных
           with
           [
               T=float
           ]
-C:\development\SFML\new\player.h(66,12): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
-C:\development\SFML\new\player.h(82,13): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
-C:\development\SFML\new\player.h(98,12): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
-C:\development\SFML\new\player.h(104,69): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
+C:\development\SFML\new\player.h(69,12): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
+C:\development\SFML\new\player.h(89,13): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
+C:\development\SFML\new\player.h(109,12): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
+C:\development\SFML\new\player.h(132,12): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
+C:\development\SFML\new\player.h(169,12): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
+C:\development\SFML\new\player.h(185,13): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
+C:\development\SFML\new\player.h(201,12): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
+C:\development\SFML\new\player.h(207,57): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
           with
           [
               T=int
           ]
-C:\development\SFML\new\player.h(114,12): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
-C:\development\SFML\new\player.h(140,12): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
-C:\development\SFML\new\player.h(156,13): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
-C:\development\SFML\new\player.h(172,12): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
-C:\development\SFML\new\player.h(178,69): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
-          with
-          [
-              T=int
-          ]
-C:\development\SFML\new\player.h(188,12): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
-C:\development\SFML\new\player.h(211,27): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\development\SFML\new\player.h(211,23): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\development\SFML\new\player.h(217,12): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
+C:\development\SFML\new\player.h(240,27): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\development\SFML\new\player.h(240,23): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
 C:\development\SFML\new\bot.h(24,27): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
 C:\development\SFML\new\bot.h(24,23): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\development\SFML\new\bot.h(56,10): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
-C:\development\SFML\new\bot.h(63,10): warning C4244: -=: преобразование "float" в "int", возможна потеря данных
-C:\development\SFML\new\bot.h(70,10): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
-C:\development\SFML\new\bot.h(75,10): warning C4244: -=: преобразование "float" в "int", возможна потеря данных
-C:\development\SFML\new\bot.h(119,69): warning C4244: аргумент: преобразование "double" в "T", возможна потеря данных
-          with
-          [
-              T=int
-          ]
-C:\development\SFML\new\bot.h(145,27): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\development\SFML\new\bot.h(145,23): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\development\SFML\new\main.cpp(69,47): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\development\SFML\new\main.cpp(69,39): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\development\SFML\new\main.cpp(91,47): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
-C:\development\SFML\new\main.cpp(91,39): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\development\SFML\new\bot.h(55,10): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
+C:\development\SFML\new\bot.h(62,24): warning C4244: -=: преобразование "double" в "int", возможна потеря данных
+C:\development\SFML\new\bot.h(75,10): warning C4244: +=: преобразование "float" в "int", возможна потеря данных
+C:\development\SFML\new\bot.h(80,24): warning C4244: -=: преобразование "double" в "int", возможна потеря данных
+C:\development\SFML\new\bot.h(156,27): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\development\SFML\new\bot.h(156,23): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\development\SFML\new\main.cpp(74,47): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\development\SFML\new\main.cpp(74,39): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\development\SFML\new\main.cpp(97,47): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+C:\development\SFML\new\main.cpp(97,39): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
   SFML.vcxproj -> C:\development\SFML\new\x64\Debug\SFML.exe

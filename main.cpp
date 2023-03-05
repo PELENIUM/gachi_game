@@ -15,14 +15,19 @@ using namespace sf;
 RenderWindow window(VideoMode(WIDTH, HEIGHT), "SFML");
 
 Music back_music;
+Music back_music_main;
 
 void game() {
-    back_music.openFromFile("sounds/back.wav");
+    back_music.openFromFile("sounds/back.ogg");
     back_music.setLoop(true);
     back_music.setVolume(0);
     back_music.play();
-    Bot *nps = new Bot(1050, 500, "images/pers.png", 2.5);
-    Player *main_player = new Player(1800, 860, "images/pers.png", 4);
+    back_music_main.openFromFile("sounds/back_main.ogg");
+    back_music_main.setLoop(true);
+    back_music_main.setVolume(100);
+    back_music_main.play();
+    Bot *nps = new Bot(1050, 500, "images/Sprites/NightBorne.png", 3.5);
+    Player *main_player = new Player(1800, 860, "images/Sprites/enemy.png", 4);
     window.setFramerateLimit(60);
     Clock clock;
     float main_timer = 0;
@@ -71,6 +76,7 @@ void game() {
                 }
             }
             back_music.setVolume(0);
+            back_music_main.setVolume(0);
         }
         
         if (!main_active) {
@@ -93,13 +99,13 @@ void game() {
                 }
             }
             back_music.setVolume(100);
+            back_music_main.setVolume(0);
         }
         
         nps->update(&window, main_player);
-        main_player->update(&window, HEIGHT, WIDTH);
+        main_player->update(&window);
         window.display();
     }
-    main_player->~Player();
     delete main_player;
 }
 
