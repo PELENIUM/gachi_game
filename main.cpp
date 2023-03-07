@@ -68,7 +68,7 @@ void game() {
                     if (Map[i][j] == '%') {
                         map.setTextureRect(IntRect(128, 0, 32, 32));
                     }
-                    if (Map[i][j] == '*') {
+                    if (Map[i][j] == '$') {
                         map.setTextureRect(IntRect(160, 0, 32, 32));
                     }
                     map.setPosition(j * 32, i * 32);
@@ -76,7 +76,7 @@ void game() {
                 }
             }
             back_music.setVolume(0);
-            back_music_main.setVolume(0);
+            back_music_main.setVolume(100);
         }
         
         if (!main_active) {

@@ -70,25 +70,25 @@ public:
 		case 2:
 			if (m[*y / 32][(*x + 67) / 32] == '#')
 				return 1;
-			if (m[(*y + 67) / 32][(*x + 67) / 32] == '#')
+			if (m[(*y + h) / 32][(*x + w) / 32] == '#')
 				return 2;
-			if (m[*y / 32][(*x + 67) / 32] != '#' and m[(*y + 67) / 32][(*x + 67) / 32] != '#')
+			if (m[*y / 32][(*x + w) / 32] != '#' and m[(*y + h) / 32][(*x + w) / 32] != '#')
 				return 0;
 
 		case 3:
 			if (m[*y / 32][*x / 32] == '#')
 				return 1;
-			if (m[*y / 32][(*x + 67) / 32] == '#')
+			if (m[*y / 32][(*x + w) / 32] == '#')
 				return 2;
-			if (m[*y / 32][*x / 32] != '#' and m[*y / 32][(*x + 67) / 32] != '#')
+			if (m[*y / 32][*x / 32] != '#' and m[*y / 32][(*x + w) / 32] != '#')
 				return 0;
 
 		case 4:
-			if (m[(*y + 67) / 32][(*x) / 32] == '#')
+			if (m[(*y + h) / 32][(*x) / 32] == '#')
 				return 1;
-			if (m[(*y + 67) / 32][(*x + 67) / 32] == '#')
+			if (m[(*y + h) / 32][(*x + w) / 32] == '#')
 				return 2;
-			if (m[(*y + 67) / 32][(*x) / 32] != '#' and m[(*y + 67) / 32][(*x + 67) / 32] != '#')
+			if (m[(*y + h) / 32][(*x) / 32] != '#' and m[(*y + h) / 32][(*x + w) / 32] != '#')
 				return 0;
 
 		default:
@@ -96,15 +96,22 @@ public:
 		}
 	}
 	void update(RenderWindow *win) {
+		std::string *map = new std::string;
+		if (main_active)
+			map = Map;
+		if (!main_active)
+			map = Map_gachi;
 		*x = sprite->getPosition().x;
 		*y = sprite->getPosition().y;
 		sprite->setTextureRect(IntRect(0, 67, 48, 67));
-		if (main_active) {
+		//if (main_active) {
 			if (Keyboard::isKeyPressed(Keyboard::A) == true) {
-				if (collision(x, y, 67, 67, Map, 1) == 1 or collision(x, y, 67, 67, Map, 1) == 2) {
-					*x = 32 * ((*x) / 32);
-				}
-				else if (collision(x, y, 67, 67, Map, 1) == 0)
+				if ((collision(x, y, 67, 67, map, 1) == 1 or collision(x, y, 67, 67, map, 1) == 2) 
+					and (map[(*y + 67) / 32][*x / 32] != '#' and map[*y / 32][*x / 32] != '#' or map[*y / 32][(*x + 67) / 32] != '#' and map[(*y + 67) / 32][(*x + 67) / 32] != '#'))
+					*x = (32 * (*x / 32)) + 32;
+
+				else if (collision(x, y, 67, 67, map, 1) == 0 or (map[(*y + 67) / 32][*x / 32] == '#' and map[(*y + 67) / 32][(*x + 67) / 32] == '#' and collision(x, y, 67, 67, map, 1) != 1)
+					or (map[*y / 32][*x / 32] == '#' and map[*y / 32][((*x + 67) + 67) / 32] == '#' and collision(x, y, 67, 67, map, 1) != 2))
 					*x += -(*MOVING_SPEED);
 				(*counter_l)++;
 				if (*counter_l >= 4) {
@@ -117,14 +124,13 @@ public:
 				(*is_moving) = true;
 				move_r = false;
 				move_l = true;
-				move_u = false;
-				move_d = false;
 			}
 			if (Keyboard::isKeyPressed(Keyboard::D) == true) {
-				if (collision(x, y, 67, 67, Map,2) == 1 or collision(x, y, 67, 67, Map, 2) == 2) {
+				if ((collision(x, y, 67, 67, map, 2) == 1 or collision(x, y, 67, 67, map, 2) == 2) and map[(*y + 67) / 32][(*x + 67) / 32] != '#' and map[*y / 32][(*x + 67) / 32] != '#')
 					*x = 32 * ((*x + 67) / 32) - 67;
-				}
-				else if (collision(x, y, 67, 67, Map, 2) == 0)
+
+				else if (collision(x, y, 67, 67, map, 2) == 0 or (map[(*y + 67) / 32][*x / 32] == '#' and map[(*y + 67) / 32][(*x + 67) / 32] == '#' and collision(x, y, 67, 67, map, 2) != 1)
+					or (map[*y / 32][*x / 32] == '#' and map[*y / 32][(*x + 67) / 32] == '#' and collision(x, y, 67, 67, map, 2) != 2))
 					*x += (*MOVING_SPEED);
 				(*counter_r)++;
 				if (*counter_r >= 4) {
@@ -137,15 +143,14 @@ public:
 				(*is_moving) = true;
 				move_r = true;
 				move_l = false;
-				move_u = false;
-				move_d = false;
 			}
 			if (Keyboard::isKeyPressed(Keyboard::W) == true) {
-				if (collision(x, y, 67, 67, Map, 3) == 1 or collision(x, y, 67, 67, Map, 2) == 3) {
-					*y = 32 * (*y / 32) + 1;
+				if ((collision(x, y, 67, 67, map, 3) == 1 or collision(x, y, 67, 67, map, 3) == 2) and (map[*y / 32][*x / 32] != '#' and map[(*y + 67) / 32][*x / 32] != '#') and (map[*y / 32][(*x + 67) / 32] != '#'
+					and map[(*y + 67) / 32][(*x + 67) / 32] != '#')) {
+					*y = 32 * (*y / 32) + 32;
 				}
-				else if (collision(x, y, 67, 67, Map, 2) == 0)
-					*y += -(*MOVING_SPEED);
+				else if (collision(x, y, 67, 67, map, 3) == 0 or ((map[*y / 32][*x / 32] != '#' and map[(*y + 67) / 32][*x / 32] != '#') and (map[*y / 32][(*x + 67) / 32] != '#' and map[(*y + 67) / 32][(*x + 67) / 32] != '#')))
+					*y -= (*MOVING_SPEED);
 				(*counter_u)++;
 				if (*counter_u >= 3) {
 					(*iter_u)++;
@@ -164,10 +169,10 @@ public:
 				move_u = true;
 			}
 			if (Keyboard::isKeyPressed(Keyboard::S) == true) {
-				if (collision(x, y, 67, 67, Map, 4) == 1 or collision(x, y, 67, 67, Map, 4) == 2) {
-					*y = 32 * (*y / 32) - 1;
+				if (collision(x, y, 67, 67, map, 4) == 1 or collision(x, y, 67, 67, Map, 4) == 2) {
+					*y = 32 * (*y / 32);
 				}
-				else if (collision(x, y, 67, 67, Map, 1) == 0)
+				else if (collision(x, y, 67, 67, map, 4) == 0)
 					*y += *MOVING_SPEED;
 				(*counter_d)++;
 				if (*counter_d >= 3) {
@@ -190,16 +195,16 @@ public:
 				and Keyboard::isKeyPressed(Keyboard::A) == false and Keyboard::isKeyPressed(Keyboard::W) == false) {
 				(*is_moving) = false;
 			}
-			if (Keyboard::isKeyPressed(Keyboard::R) == true or Map[(*y + 67 - 10) / 32][(*x) / 32] == '@'
-				or Map[(*y + 67 - 10) / 32][(*x + 67) / 32] == '@') {
+			if (Keyboard::isKeyPressed(Keyboard::R) == true or map[(*y + 57) / 32][(*x) / 32] == '@'
+				or map[(*y + 57) / 32][(*x + 67) / 32] == '@') {
 				*x = 1750;
 				*y = 1130;
 			}
-			if (Map[(*y + 67) / 32][(*x) / 32] == '%' or Map[(*y + 67) / 32][(*x + 67) / 32] == '%'
-				or Map[(*y) / 32][(*x) / 32] == '%' or Map[(*y + 67) / 32][(*x + 67) / 32] == '%') {
-				main_active = false;
+			if (map[(*y + 67) / 32][(*x) / 32] == '%' or map[(*y + 67) / 32][(*x + 67) / 32] == '%'
+				or map[(*y) / 32][(*x) / 32] == '%' or map[(*y + 67) / 32][(*x + 67) / 32] == '%') {
+				main_active = !main_active;
 			}
-		}
+		/*}
 		if (!main_active) {
 			if (Keyboard::isKeyPressed(Keyboard::A) == true) {
 				if (collision(x, y, 67, 67, Map_gachi, 1) == 1 or collision(x, y, 67, 67, Map_gachi, 1) == 2) {
@@ -300,7 +305,7 @@ public:
 				or Map_gachi[(*y) / 32][(*x) / 32] == '%' or Map_gachi[(*y + 67) / 32][(*x + 67) / 32] == '%') {
 				main_active = true;
 			}
-		}
+		}*/
 		sprite->setPosition(*x, *y);
 		(*win).draw(*sprite);
 	}

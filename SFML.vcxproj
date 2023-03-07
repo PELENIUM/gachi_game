@@ -145,7 +145,6 @@ sfml-system-d.lib</AdditionalDependencies>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bot.h" />
-    <ClInclude Include="collision.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="player.h" />
   </ItemGroup>
