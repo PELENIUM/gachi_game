@@ -4,7 +4,7 @@
 #include <math.h>
 using namespace sf;
 
-class Bot : private Player{
+class Bot : protected Player{
 private:
 	bool in_zone = false;
 	bool attack_zone = false;
@@ -48,7 +48,7 @@ public:
 	void update(RenderWindow *win, Player *pl) {
 		if (!in_zone and main_active)
 			sprite->setTextureRect(IntRect(0, 0, 35, 28));
-		if (sqrt(pow(*(pl->x) - (*(x) + 36), 2) + pow(*(pl->y) - (*(y) + 28), 2)) <= 150)
+		if (sqrt(pow(*(pl->x) - (*(x) + 36), 2) + pow(*(pl->y) - (*(y) + 28), 2)) <= 150 and main_active)
 			in_zone = true;
 		if (in_zone) {
 			if ((*(pl->x) - *(x)) > 0) {
@@ -72,8 +72,8 @@ public:
 				}
 			}
 			else if ((*(pl->x) - *(x)) == 0) {
-				move_l = false;
-				move_r = true;
+				move_l = true;
+				move_r = false;
 			}
 
 			if ((*(pl->y) + 32 - *(y)) > 0) {

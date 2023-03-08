@@ -104,208 +104,106 @@ public:
 		*x = sprite->getPosition().x;
 		*y = sprite->getPosition().y;
 		sprite->setTextureRect(IntRect(0, 67, 48, 67));
-		//if (main_active) {
-			if (Keyboard::isKeyPressed(Keyboard::A) == true) {
-				if ((collision(x, y, 67, 67, map, 1) == 1 or collision(x, y, 67, 67, map, 1) == 2) 
-					and (map[(*y + 67) / 32][*x / 32] != '#' and map[*y / 32][*x / 32] != '#' or map[*y / 32][(*x + 67) / 32] != '#' and map[(*y + 67) / 32][(*x + 67) / 32] != '#'))
-					*x = (32 * (*x / 32)) + 32;
+		if (Keyboard::isKeyPressed(Keyboard::A) == true) {
+			if (((collision(x, y, 67, 67, map, 1) == 1 or collision(x, y, 67, 67, map, 1) == 2) and map[(*y + 67) / 32][*x / 32] != '#' and map[*y / 32][*x / 32] != '#')
+				or (map[(*y + 67) / 32][*x / 32] == '#' and map[*y / 32][*x / 32] == '#'))
+				*x = (32 * (*x / 32)) + 32;
 
-				else if (collision(x, y, 67, 67, map, 1) == 0 or (map[(*y + 67) / 32][*x / 32] == '#' and map[(*y + 67) / 32][(*x + 67) / 32] == '#' and collision(x, y, 67, 67, map, 1) != 1)
-					or (map[*y / 32][*x / 32] == '#' and map[*y / 32][((*x + 67) + 67) / 32] == '#' and collision(x, y, 67, 67, map, 1) != 2))
-					*x += -(*MOVING_SPEED);
-				(*counter_l)++;
-				if (*counter_l >= 4) {
-					(*iter_l)++;
-					*counter_l = 0;
-				}
-				sprite->setTextureRect(IntRect((*iter_l) * 67 + 67, 0, -67, 67));
-				if (*iter_l == 8)
-					*iter_l = 0;
-				(*is_moving) = true;
-				move_r = false;
-				move_l = true;
+			else if (collision(x, y, 67, 67, map, 1) == 0 or (map[(*y + 67) / 32][*x / 32] == '#' and map[(*y + 67) / 32][(*x + 67) / 32] == '#' and collision(x, y, 67, 67, map, 1) != 1)
+				or (map[*y / 32][*x / 32] == '#' and map[*y / 32][((*x + 67) + 67) / 32] == '#' and collision(x, y, 67, 67, map, 1) != 2))
+				*x += -(*MOVING_SPEED);
+			(*counter_l)++;
+			if (*counter_l >= 4) {
+				(*iter_l)++;
+				*counter_l = 0;
 			}
-			if (Keyboard::isKeyPressed(Keyboard::D) == true) {
-				if ((collision(x, y, 67, 67, map, 2) == 1 or collision(x, y, 67, 67, map, 2) == 2) and map[(*y + 67) / 32][(*x + 67) / 32] != '#' and map[*y / 32][(*x + 67) / 32] != '#')
-					*x = 32 * ((*x + 67) / 32) - 67;
+			sprite->setTextureRect(IntRect((*iter_l) * 67 + 67, 0, -67, 67));
+			if (*iter_l == 8)
+				*iter_l = 0;
+			(*is_moving) = true;
+			move_r = false;
+			move_l = true;
+		}
+		if (Keyboard::isKeyPressed(Keyboard::D) == true) {
+			if (((collision(x, y, 67, 67, map, 2) == 1 or collision(x, y, 67, 67, map, 2) == 2) and map[(*y + 67) / 32][(*x + 67) / 32] != '#' and map[*y / 32][(*x + 67) / 32] != '#')
+				or (map[(*y + 67) / 32][(*x + 67) / 32] == '#' and map[*y / 32][(*x + 67) / 32] == '#'))
+				*x = 32 * ((*x + 67) / 32) - 67;
 
-				else if (collision(x, y, 67, 67, map, 2) == 0 or (map[(*y + 67) / 32][*x / 32] == '#' and map[(*y + 67) / 32][(*x + 67) / 32] == '#' and collision(x, y, 67, 67, map, 2) != 1)
-					or (map[*y / 32][*x / 32] == '#' and map[*y / 32][(*x + 67) / 32] == '#' and collision(x, y, 67, 67, map, 2) != 2))
-					*x += (*MOVING_SPEED);
-				(*counter_r)++;
-				if (*counter_r >= 4) {
-					(*iter_r)++;
-					*counter_r = 0;
-				}
-				sprite->setTextureRect(IntRect((*iter_r) * 67, 0, 67, 67));
-				if (*iter_r == 8)
-					*iter_r = 0;
-				(*is_moving) = true;
-				move_r = true;
-				move_l = false;
+			else if (collision(x, y, 67, 67, map, 2) == 0 or (map[(*y + 67) / 32][*x / 32] == '#' and map[(*y + 67) / 32][(*x + 67) / 32] == '#' and collision(x, y, 67, 67, map, 2) != 1)
+				or (map[*y / 32][*x / 32] == '#' and map[*y / 32][(*x + 67) / 32] == '#' and collision(x, y, 67, 67, map, 2) != 2))
+				*x += (*MOVING_SPEED);
+			(*counter_r)++;
+			if (*counter_r >= 4) {
+				(*iter_r)++;
+				*counter_r = 0;
 			}
-			if (Keyboard::isKeyPressed(Keyboard::W) == true) {
-				if ((collision(x, y, 67, 67, map, 3) == 1 or collision(x, y, 67, 67, map, 3) == 2) and (map[*y / 32][*x / 32] != '#' and map[(*y + 67) / 32][*x / 32] != '#') and (map[*y / 32][(*x + 67) / 32] != '#'
-					and map[(*y + 67) / 32][(*x + 67) / 32] != '#')) {
-					*y = 32 * (*y / 32) + 32;
-				}
-				else if (collision(x, y, 67, 67, map, 3) == 0 or ((map[*y / 32][*x / 32] != '#' and map[(*y + 67) / 32][*x / 32] != '#') and (map[*y / 32][(*x + 67) / 32] != '#' and map[(*y + 67) / 32][(*x + 67) / 32] != '#')))
-					*y -= (*MOVING_SPEED);
-				(*counter_u)++;
-				if (*counter_u >= 3) {
-					(*iter_u)++;
-					*counter_u = 0;
-				}
-				if (move_r == true) {
-					sprite->setTextureRect(IntRect((*iter_u) * 67, 0, 67, 67));
-				}
-				if (move_l == true) {
-					sprite->setTextureRect(IntRect((*iter_u) * 67 + 67, 0, -67, 67));
-				}
-				if (*iter_u == 8)
-					*iter_u = 0;
-				(*is_moving) = true;
-				move_d = false;
-				move_u = true;
+			sprite->setTextureRect(IntRect((*iter_r) * 67, 0, 67, 67));
+			if (*iter_r == 8)
+				*iter_r = 0;
+			(*is_moving) = true;
+			move_r = true;
+			move_l = false;
+		}
+		if (Keyboard::isKeyPressed(Keyboard::W) == true) {
+			if ((collision(x, y, 67, 67, map, 3) == 1 or collision(x, y, 67, 67, map, 3) == 2) and (map[*y / 32][*x / 32] != '#' and map[(*y + 67) / 32][*x / 32] != '#') and (map[*y / 32][(*x + 67) / 32] != '#'
+				and map[(*y + 67) / 32][(*x + 67) / 32] != '#')) {
+				*y = 32 * (*y / 32) + 32;
 			}
-			if (Keyboard::isKeyPressed(Keyboard::S) == true) {
-				if (collision(x, y, 67, 67, map, 4) == 1 or collision(x, y, 67, 67, Map, 4) == 2) {
-					*y = 32 * (*y / 32);
-				}
-				else if (collision(x, y, 67, 67, map, 4) == 0)
-					*y += *MOVING_SPEED;
-				(*counter_d)++;
-				if (*counter_d >= 3) {
-					(*iter_d)++;
-					*counter_d = 0;
-				}
-				if (move_r == true) {
-					sprite->setTextureRect(IntRect((*iter_d) * 67, 0, 67, 67));
-				}
-				if (move_l == true) {
-					sprite->setTextureRect(IntRect((*iter_d) * 67 + 67, 0, -67, 67));
-				}
-				if (*iter_d == 8)
-					*iter_d = 0;
-				(*is_moving) = true;
-				move_d = true;
-				move_u = false;
+			else if (collision(x, y, 67, 67, map, 3) == 0 or ((map[*y / 32][*x / 32] != '#' and map[(*y + 67) / 32][*x / 32] != '#') and (map[*y / 32][(*x + 67) / 32] != '#' and map[(*y + 67) / 32][(*x + 67) / 32] != '#')))
+				*y -= (*MOVING_SPEED);
+			(*counter_u)++;
+			if (*counter_u >= 3) {
+				(*iter_u)++;
+				*counter_u = 0;
 			}
-			if (Keyboard::isKeyPressed(Keyboard::S) == false and Keyboard::isKeyPressed(Keyboard::D) == false
-				and Keyboard::isKeyPressed(Keyboard::A) == false and Keyboard::isKeyPressed(Keyboard::W) == false) {
-				(*is_moving) = false;
+			if (move_r == true) {
+				sprite->setTextureRect(IntRect((*iter_u) * 67, 0, 67, 67));
 			}
-			if (Keyboard::isKeyPressed(Keyboard::R) == true or map[(*y + 57) / 32][(*x) / 32] == '@'
-				or map[(*y + 57) / 32][(*x + 67) / 32] == '@') {
-				*x = 1750;
-				*y = 1130;
+			if (move_l == true) {
+				sprite->setTextureRect(IntRect((*iter_u) * 67 + 67, 0, -67, 67));
 			}
-			if (map[(*y + 67) / 32][(*x) / 32] == '%' or map[(*y + 67) / 32][(*x + 67) / 32] == '%'
-				or map[(*y) / 32][(*x) / 32] == '%' or map[(*y + 67) / 32][(*x + 67) / 32] == '%') {
-				main_active = !main_active;
+			if (*iter_u == 8)
+				*iter_u = 0;
+			(*is_moving) = true;
+			move_d = false;
+			move_u = true;
+		}
+		if (Keyboard::isKeyPressed(Keyboard::S) == true) {
+			if (collision(x, y, 67, 67, map, 4) == 1 or collision(x, y, 67, 67, Map, 4) == 2) {
+				*y = 32 * (*y / 32);
 			}
-		/*}
-		if (!main_active) {
-			if (Keyboard::isKeyPressed(Keyboard::A) == true) {
-				if (collision(x, y, 67, 67, Map_gachi, 1) == 1 or collision(x, y, 67, 67, Map_gachi, 1) == 2) {
-					*x = 32 * ((*x) / 32);
-				}
-				else if (collision(x, y, 67, 67, Map_gachi, 1) == 0)
-					*x += -(*MOVING_SPEED);
-				(*counter_l)++;
-				if (*counter_l >= 4) {
-					(*iter_l)++;
-					*counter_l = 0;
-				}
-				sprite->setTextureRect(IntRect((*iter_l) * 67 + 67, 0, -67, 67));
-				if (*iter_l == 8)
-					*iter_l = 0;
-				(*is_moving) = true;
-				move_r = false;
-				move_l = true;
-				move_u = false;
-				move_d = false;
+			else if (collision(x, y, 67, 67, map, 4) == 0)
+				*y += *MOVING_SPEED;
+			(*counter_d)++;
+			if (*counter_d >= 3) {
+				(*iter_d)++;
+				*counter_d = 0;
 			}
-			if (Keyboard::isKeyPressed(Keyboard::D) == true) {
-				if (collision(x, y, 67, 67, Map_gachi, 2) == 1 or collision(x, y, 67, 67, Map_gachi, 2) == 2) {
-					*x = 32 * ((*x + 67) / 32) - 67;
-				}
-				else
-					*x += (*MOVING_SPEED);
-				(*counter_r)++;
-				if (*counter_r >= 4) {
-					(*iter_r)++;
-					*counter_r = 0;
-				}
-				sprite->setTextureRect(IntRect((*iter_r) * 67, 0, 67, 67));
-				if (*iter_r == 8)
-					*iter_r = 0;
-				(*is_moving) = true;
-				move_r = true;
-				move_l = false;
-				move_u = false;
-				move_d = false;
+			if (move_r == true) {
+				sprite->setTextureRect(IntRect((*iter_d) * 67, 0, 67, 67));
 			}
-			if (Keyboard::isKeyPressed(Keyboard::W) == true) {
-				if (collision(x, y, 67, 67, Map_gachi, 3) == 1 or collision(x, y, 67, 67, Map_gachi, 2) == 3) {
-					*y = 32 * (*y / 32) + 1;
-				}
-				else if (collision(x, y, 67, 67, Map_gachi, 2) == 0)
-					*y += -(*MOVING_SPEED);
-				(*counter_u)++;
-				if (*counter_u >= 3) {
-					(*iter_u)++;
-					*counter_u = 0;
-				}
-				if (move_r == true) {
-					sprite->setTextureRect(IntRect((*iter_u) * 67, 0, 67, 67));
-				}
-				if (move_l == true) {
-					sprite->setTextureRect(IntRect((*iter_u) * 67 + 67, 0, -67, 67));
-				}
-				if (*iter_u == 8)
-					*iter_u = 0;
-				(*is_moving) = true;
-				move_d = false;
-				move_u = true;
+			if (move_l == true) {
+				sprite->setTextureRect(IntRect((*iter_d) * 67 + 67, 0, -67, 67));
 			}
-			if (Keyboard::isKeyPressed(Keyboard::S) == true) {
-				if (collision(x, y, 67, 67, Map_gachi, 4) == 1 or collision(x, y, 67, 67, Map_gachi, 4) == 2) {
-					*y = 32 * (*y / 32) - 1;
-				}
-				else if (collision(x, y, 67, 67, Map_gachi, 1) == 0)
-					*y += *MOVING_SPEED;
-				(*counter_d)++;
-				if (*counter_d >= 3) {
-					(*iter_d)++;
-					*counter_d = 0;
-				}
-				if (move_r == true) {
-					sprite->setTextureRect(IntRect((*iter_d) * 67, 0, 67, 67));
-				}
-				if (move_l == true) {
-					sprite->setTextureRect(IntRect((*iter_d) * 67 + 67, 0, -67, 67));
-				}
-				if (*iter_d == 8)
-					*iter_d = 0;
-				(*is_moving) = true;
-				move_d = true;
-				move_u = false;
-			}
-			if (Keyboard::isKeyPressed(Keyboard::S) == false and Keyboard::isKeyPressed(Keyboard::D) == false
-				and Keyboard::isKeyPressed(Keyboard::A) == false and Keyboard::isKeyPressed(Keyboard::W) == false) {
-				(*is_moving) = false;
-			}
-			if (Keyboard::isKeyPressed(Keyboard::R) == true or Map_gachi[(*y + 67 - 10) / 32][(*x) / 32] == '@'
-				or Map_gachi[(*y + 67 - 10) / 32][(*x + 67) / 32] == '@') {
-				*x = 1750;
-				*y = 1130;
-			}
-			if (Map_gachi[(*y + 67) / 32][(*x) / 32] == '%' or Map_gachi[(*y + 67) / 32][(*x + 67) / 32] == '%'
-				or Map_gachi[(*y) / 32][(*x) / 32] == '%' or Map_gachi[(*y + 67) / 32][(*x + 67) / 32] == '%') {
-				main_active = true;
-			}
-		}*/
+			if (*iter_d == 8)
+				*iter_d = 0;
+			(*is_moving) = true;
+			move_d = true;
+			move_u = false;
+		}
+		if (Keyboard::isKeyPressed(Keyboard::S) == false and Keyboard::isKeyPressed(Keyboard::D) == false
+			and Keyboard::isKeyPressed(Keyboard::A) == false and Keyboard::isKeyPressed(Keyboard::W) == false) {
+			(*is_moving) = false;
+		}
+		if (Keyboard::isKeyPressed(Keyboard::R) == true or map[(*y + 57) / 32][(*x) / 32] == '@'
+			or map[(*y + 57) / 32][(*x + 67) / 32] == '@') {
+			*x = 1750;
+			*y = 1130;
+		}
+		if (map[(*y + 67) / 32][(*x) / 32] == '%' or map[(*y + 67) / 32][(*x + 67) / 32] == '%'
+			or map[(*y) / 32][(*x) / 32] == '%' or map[(*y + 67) / 32][(*x + 67) / 32] == '%') {
+			main_active = !main_active;
+		}
 		sprite->setPosition(*x, *y);
 		(*win).draw(*sprite);
 	}

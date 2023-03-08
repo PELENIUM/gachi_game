@@ -94,6 +94,9 @@ void game() {
                     if (Map_gachi[i][j] == '%') {
                         map.setTextureRect(IntRect(128, 0, 32, 32));
                     }
+                    if (Map_gachi[i][j] == '$') {
+                        map.setTextureRect(IntRect(160, 0, 32, 32));
+                    }
                     map.setPosition(j * 32, i * 32);
                     window.draw(map);
                 }
